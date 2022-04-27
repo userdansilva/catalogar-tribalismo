@@ -1,0 +1,17 @@
+.container {
+  margin-top: 1rem;
+}
+
+.content {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.products {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}

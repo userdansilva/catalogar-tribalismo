@@ -1,0 +1,16 @@
+.container {
+  margin: 2rem 0;
+}
+
+.content {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.categories {
+  display: flex;
+  gap: 0 2rem;
+  margin-top: 1rem;
+  overflow: hidden;
+}

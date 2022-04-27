@@ -1,0 +1,31 @@
+.container {
+  text-align: center;
+
+  span {
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+}
+
+.imageContainer {
+  width: 67px;
+  height: 67px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.active {
+  background: var(--violet-600);
+}
+
+.image {
+  width: 63px;
+  height: 63px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--white);
+}

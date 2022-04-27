@@ -1,0 +1,15 @@
+.container {
+  margin-top: 3rem;
+}
+
+.content {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.designs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}

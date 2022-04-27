@@ -1,0 +1,26 @@
+.container {
+  height: 5.625rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.content {
+  max-width: 1760px;
+  height: 5.625rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
+
+  nav {
+    a {
+      & + a {
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+
+.logo {
+  margin-right: 2rem;
+}
