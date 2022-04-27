@@ -1,13 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import execQuery from '../../services/mysql'
-import {
-  Design,
-  Image,
-  Category,
-  Product,
-  FormattedDesign
-} from '../../types/Design'
+import { Design, Image, Category, Product, FormattedDesign } from '../../types/Design'
 
 const Designs = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -56,15 +50,13 @@ const Designs = async (req: NextApiRequest, res: NextApiResponse) => {
           images: [image]
         }
 
-        const isDesignInAcc =
-          acc.length > 1 && acc[acc.length - 1]?.id === design.id
+        const isDesignInAcc = acc.length >= 1 && acc[acc.length - 1]?.id === design.id
 
         if (isDesignInAcc) {
           const curPosition = acc.length - 1
           const categories = acc[curPosition].categories
 
-          const categoryByCurId = (category: any) =>
-            category.id === design.category_id
+          const categoryByCurId = (category: any) => category.id === design.category_id
           const isCategoryIn = categories.find(categoryByCurId)
 
           if (!isCategoryIn) {

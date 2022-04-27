@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
+import { ParsedUrlQueryInput } from 'querystring'
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 import { api } from '../services/api'
 import { FormattedDesign } from '../types/Design'
@@ -14,6 +15,7 @@ interface DesignContextProps {
   handleSelectProduct: (id: number) => void
   category: number
   handleSelectCategory: (id: number) => void
+  handleSearch: (serach: string) => void
 }
 
 const DesignContext = createContext<DesignContextProps>({} as DesignContextProps)
@@ -24,6 +26,7 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
   const [page, setPage] = useState(1)
   const [product, setProcuct] = useState(0)
   const [category, setCategory] = useState(0)
+  const [search, setSearch] = useState('')
   const [total, setTotal] = useState(0)
 
   const limit = 16
@@ -45,62 +48,90 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
 
   const router = useRouter()
 
-  const handleChangePage = (page: number) => {
-    const { product } = router.query
+  const routerUpdater = (
+    value: number | string,
+    type: 'page' | 'product' | 'category' | 'search'
+  ) => {
+    const { product, category, page, search } = router.query
 
-    if (page > 1) router.push(`/?page=${page}${product ? `&product=${product}` : ''}`)
-    else if (product) router.push(`/?product=${product}`)
-    else router.push('/')
+    const query = {
+      search: type === 'search' ? value : search,
+      product: type === 'product' ? value : product,
+      category: type === 'category' ? value : category,
+      page: type === 'page' ? value : page
+    } as ParsedUrlQueryInput
 
-    setPage(page)
+    if ((type === 'page' && value === 1) || (type !== 'page' && !page)) delete query.page
+    if ((type === 'product' && !value) || (type !== 'product' && !product)) delete query.product
+    if ((type === 'category' && !value) || (type !== 'category' && !category)) delete query.category
+    if ((type === 'search' && !value) || (type !== 'search' && !search)) delete query.search
+
+    router.push({ query })
   }
 
   useEffect(() => {
-    const { product, page } = router.query
+    const { page, product, category, search } = router.query
 
     if (product) setProcuct(parseInt(product as string))
-
+    if (category) setCategory(parseInt(category as string))
     if (page) setPage(parseInt(page as string))
+    if (search) setSearch(search as string)
     else setPage(1)
   }, [router.query])
 
+  const handleChangePage = (page: number) => {
+    routerUpdater(page, 'page')
+    setPage(page)
+  }
+
   const handleSelectProduct = (id: number) => {
-    const { category } = router.query
-
-    if (category && id !== 0) router.push(`/?product=${id}&category=${category}`)
-    else if (category && id === 0) router.push(`/?category=${category}`)
-    else router.push(`/?product=${id}`)
-
+    routerUpdater(id, 'product')
     setProcuct(id)
   }
 
+  const handleSelectCategory = (id: number) => {
+    routerUpdater(id, 'category')
+    setCategory(id)
+  }
+
+  const handleSearch = (search: string) => {
+    routerUpdater(search, 'search')
+    setSearch(search)
+  }
+
+  const normalizeString = (value: string) =>
+    value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+
   useEffect(() => {
-    const paginateDesigns = () => {
+    const paginateAndFilterDesigns = () => {
       const start = page * limit - limit
       const end = page * limit
 
-      if (product !== 0 || category !== 0) {
-        const byProduct = (design: FormattedDesign) => design.product.id === product
+      if (product !== 0 || category !== 0 || search !== '') {
+        const designs = [...designsAll].filter(design => {
+          let hasProduct = true
+          if (product !== 0) hasProduct = design.product.id === product
 
-        const byCategory = (design: FormattedDesign) => {
-          for (var cat of design.categories) {
-            if (cat.id === category) return true
+          let hasCategory = true
+          if (category !== 0) {
+            for (var cat of design.categories) {
+              if (cat.id !== category) hasCategory = false
+            }
           }
-          return false
-        }
 
-        const byProductAndCategory = (design: FormattedDesign) => {
-          for (var cat of design.categories) {
-            if (cat.id === category && design.product.id === product) return true
-          }
-          return false
-        }
+          if (!design.tags) design.tags = ''
 
-        let designs = [] as FormattedDesign[]
+          let hasSearch = true
+          if (search !== '')
+            hasSearch =
+              normalizeString(design.title).includes(normalizeString(search)) ||
+              normalizeString(design.tags).includes(normalizeString(search))
 
-        if (product !== 0 && category === 0) designs = [...designsAll].filter(byProduct)
-        if (product === 0 && category !== 0) designs = [...designsAll].filter(byCategory)
-        if (product !== 0 && category !== 0) designs = [...designsAll].filter(byProductAndCategory)
+          return hasProduct && hasCategory && hasSearch
+        }) as FormattedDesign[]
 
         setTotal(designs.length)
         setDesigns(designs.slice(start, end))
@@ -110,18 +141,8 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
       }
     }
 
-    paginateDesigns()
-  }, [page, designsAll, product, category])
-
-  const handleSelectCategory = (id: number) => {
-    const { product } = router.query
-
-    if (product && id !== 0) router.push(`/?product=${product}&category=${id}`)
-    else if (product && id === 0) router.push(`/?product=${product}`)
-    else router.push(`/?category=${id}`)
-
-    setCategory(id)
-  }
+    paginateAndFilterDesigns()
+  }, [page, designsAll, product, category, search])
 
   useEffect(() => {
     setTotal(designsAll.length)
@@ -138,7 +159,8 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
         product,
         handleSelectProduct,
         category,
-        handleSelectCategory
+        handleSelectCategory,
+        handleSearch
       }}
     >
       {children}

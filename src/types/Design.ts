@@ -43,7 +43,7 @@ export interface Product {
 export interface FormattedDesign {
   id: number
   title: string
-  tags: string
+  tags?: string
   product: Product
   categories: Category[]
   images: Image[]
