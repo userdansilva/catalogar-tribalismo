@@ -27,8 +27,6 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <h1>Teste</h1>
-
       <Categories data={categories}/>
 
       <Products data={products}/>
