@@ -5,12 +5,12 @@ export const protectAPI = (
 ) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     if (new URL(req.headers.referer as string).origin !== process.env.DOMAIN) {
-      return res
-        .status(403)
-        .json({
-          success: false,
-          message: `Forbidden ${new URL(req.headers.referer as string).origin}`
-        })
+      return res.status(403).json({
+        success: false,
+        message: `Forbidden ${new URL(req.headers.referer as string).origin} | ${
+          process.env.DOMAIN
+        }`
+      })
     }
     return handler(req, res)
   }
