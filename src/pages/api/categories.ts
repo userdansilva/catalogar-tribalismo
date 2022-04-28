@@ -17,4 +17,4 @@ const Categories = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default protectAPI(Categories)
+export default Categories

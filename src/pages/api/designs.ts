@@ -88,4 +88,4 @@ const Designs = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default protectAPI(Designs)
+export default Designs

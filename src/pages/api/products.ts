@@ -21,4 +21,4 @@ const Products = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default protectAPI(Products)
+export default Products

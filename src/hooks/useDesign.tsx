@@ -1,12 +1,22 @@
 import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { ParsedUrlQueryInput } from 'querystring'
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 import { api } from '../services/api'
 import { FormattedDesign } from '../types/Design'
 
 interface DesignContextProps {
   designs: FormattedDesign[]
+  setDesigns: Dispatch<SetStateAction<FormattedDesign[]>>
+  setDesignsAll: Dispatch<SetStateAction<FormattedDesign[]>>
   total: number
   limit: number
   page: number
@@ -30,21 +40,6 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
   const [total, setTotal] = useState(0)
 
   const limit = 16
-
-  const fetchData = async () => {
-    try {
-      const result = (await api.get('/designs')) as AxiosResponse<FormattedDesign[]>
-
-      setDesigns(result.data)
-      setDesignsAll(result.data)
-    } catch {
-      throw new Error('Failed to request Designs.')
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
 
   const router = useRouter()
 
@@ -153,6 +148,8 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
     <DesignContext.Provider
       value={{
         designs,
+        setDesigns,
+        setDesignsAll,
         total,
         limit,
         page,
