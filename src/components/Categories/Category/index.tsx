@@ -1,8 +1,8 @@
-import Image from 'next/image'
 import { Category as CategoryType } from '../../../types/Category'
-import caneca from '../../../../public/images/categories/caneca.jpg'
 import styles from './styles.module.scss'
 import { useDesign } from '../../../hooks/useDesign'
+import { FaBeer } from 'react-icons/fa'
+import { getIconsById } from '../../../services/icons'
 
 interface CategoryProps {
   data: CategoryType
@@ -14,9 +14,9 @@ export const Category = ({ data: category, isActive }: CategoryProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={`${styles.imageContainer} ${isActive && styles.active}`}>
-        <button className={styles.image} onClick={() => handleSelectCategory(category.id)}>
-          <Image src={caneca} alt="Caneca" height={63} width={63} />
+      <div className={`${styles.iconContainer} ${isActive && styles.active}`}>
+        <button className={styles.icon} onClick={() => handleSelectCategory(category.id)}>
+          {getIconsById(category.id).icon}
         </button>
       </div>
       <span>{category.name}</span>

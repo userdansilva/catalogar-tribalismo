@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import { protectAPI } from '../../middleware/protectAPI'
 import execQuery from '../../services/mysql'
 
 interface Product {
@@ -20,4 +21,4 @@ const Products = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default Products
+export default protectAPI(Products)

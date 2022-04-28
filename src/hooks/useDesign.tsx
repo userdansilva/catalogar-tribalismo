@@ -74,8 +74,8 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
 
     if (product) setProcuct(parseInt(product as string))
     if (category) setCategory(parseInt(category as string))
-    if (page) setPage(parseInt(page as string))
     if (search) setSearch(search as string)
+    if (page) setPage(parseInt(page as string))
     else setPage(1)
   }, [router.query])
 
@@ -136,6 +136,7 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
         setTotal(designs.length)
         setDesigns(designs.slice(start, end))
       } else {
+        setTotal(designsAll.length)
         const designs = [...designsAll].slice(start, end)
         setDesigns(designs)
       }

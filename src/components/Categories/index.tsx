@@ -14,7 +14,7 @@ export const Categories = ({ data: categories }: CategoriesProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <span>Categorias</span>
+        <span className={styles.title}>Categorias</span>
         <div className={styles.categories}>
           <Category
             data={{ id: 0, name: 'Todas', favorite: 'N' }}

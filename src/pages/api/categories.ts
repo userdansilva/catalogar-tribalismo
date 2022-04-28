@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import { protectAPI } from '../../middleware/protectAPI'
 import execQuery from '../../services/mysql'
 import { Category } from '../../types/Category'
 
@@ -16,4 +17,4 @@ const Categories = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export default Categories
+export default protectAPI(Categories)

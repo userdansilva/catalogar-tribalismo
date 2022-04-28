@@ -2,6 +2,12 @@
   margin: 2rem 0;
 }
 
+.title {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gray-700);
+}
+
 .content {
   max-width: 1760px;
   margin: 0 auto;
@@ -10,7 +16,24 @@
 
 .categories {
   display: flex;
-  gap: 0 2rem;
+  gap: 1rem;
   margin-top: 1rem;
-  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 0;
+  }
+  .title {
+    margin-left: 2rem;
+  }
+  .categories {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
