@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { protectAPI } from '../../middleware/protectAPI'
 
 import execQuery from '../../services/mysql'
 import { Design, Image, Category, Product, FormattedDesign } from '../../types/Design'
