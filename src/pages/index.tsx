@@ -15,10 +15,10 @@ import { Category } from '../types/Category'
 import { Product } from '../types/Product'
 
 import { useDesign } from '../hooks/useDesign'
-import { useCategory } from '../hooks/useCategory'
-import { useProduct } from '../hooks/useProduct'
 
 import { getDesigns } from '../data/getDesigns'
+import { getCategories } from '../data/getCategories'
+import { getProducts } from '../data/getProducts'
 
 interface HomeProps {
   designs: FormattedDesign[]
@@ -26,10 +26,8 @@ interface HomeProps {
   products: Product[]
 }
 
-const Home: NextPage<HomeProps> = ({designs:designsCached}) => {
+const Home: NextPage<HomeProps> = ({designs:designsCached, categories, products}) => {
   const { designs, total, limit, page, handleChangePage, getDesigns } = useDesign()
-  const { categories } = useCategory()
-  const { products } = useProduct()
 
   useEffect(() => {
     getDesigns(designsCached)
@@ -62,10 +60,14 @@ export default Home
 
 export const getStaticProps:GetStaticProps = async () => {
   const designs = await getDesigns()
+  const categories = await getCategories()
+  const products = await getProducts()
 
   return {
     props: {
-      designs
+      designs,
+      categories,
+      products
     },
     revalidate: 60 * 60 * 60 * 24 //24 hours
   }

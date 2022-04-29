@@ -7,6 +7,9 @@ interface Product {
 }
 
 const Products = async (req: NextApiRequest, res: NextApiResponse) => {
+  // Disable API
+  return res.status(500).json({ message: 'Not implemented' })
+
   try {
     const clientId = process.env.CLIENT_ID
 

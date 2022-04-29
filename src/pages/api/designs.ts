@@ -4,6 +4,9 @@ import execQuery from '../../services/mysql'
 import { Design, Image, Category, Product, FormattedDesign } from '../../types/Design'
 
 const Designs = async (req: NextApiRequest, res: NextApiResponse) => {
+  // Disable API
+  return res.status(500).json({ message: 'Not implemented' })
+
   try {
     const clientId = process.env.CLIENT_ID
 
