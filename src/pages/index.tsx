@@ -1,16 +1,24 @@
-import type { GetStaticProps, NextPage } from 'next'
 import { Fragment, useEffect } from 'react'
 import Head from 'next/head'
-import { useDesign } from '../hooks/useDesign'
+
+import type { GetStaticProps, NextPage } from 'next'
+
 import { Categories } from '../components/Categories'
 import { Designs } from '../components/Designs'
 import { Header } from '../components/Header'
 import { Pagination } from '../components/Pagination'
 import { Products } from '../components/Products'
 import { Footer } from '../components/Footer'
+
 import { FormattedDesign } from '../types/Design'
 import { Category } from '../types/Category'
 import { Product } from '../types/Product'
+
+import { useDesign } from '../hooks/useDesign'
+import { useCategory } from '../hooks/useCategory'
+import { useProduct } from '../hooks/useProduct'
+
+import { getDesigns } from '../data/getDesigns'
 
 interface HomeProps {
   designs: FormattedDesign[]
@@ -18,13 +26,14 @@ interface HomeProps {
   products: Product[]
 }
 
-const Home: NextPage<HomeProps> = ({designs:designsCached, categories, products}) => {
-  const { designs, total, limit, page, handleChangePage, setDesignsAll, setDesigns } = useDesign()
+const Home: NextPage<HomeProps> = ({designs:designsCached}) => {
+  const { designs, total, limit, page, handleChangePage, getDesigns } = useDesign()
+  const { categories } = useCategory()
+  const { products } = useProduct()
 
   useEffect(() => {
-    setDesignsAll(designsCached)
-    setDesigns(designsCached)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getDesigns(designsCached)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -52,20 +61,12 @@ const Home: NextPage<HomeProps> = ({designs:designsCached, categories, products}
 export default Home
 
 export const getStaticProps:GetStaticProps = async () => {
-  const resultDesign = await fetch(`${process.env.DOMAIN}/api/designs`)
-  const designs = await resultDesign.json() 
+  const designs = await getDesigns()
 
-  const resultCategory = await fetch(`${process.env.DOMAIN}/api/categories`)
-  const categories = await resultCategory.json() 
-
-  const resultProducts = await fetch(`${process.env.DOMAIN}/api/products`)
-  const products = await resultProducts.json() 
-  
   return {
     props: {
-      designs,
-      categories,
-      products
+      designs
     },
+    revalidate: 60 * 60 * 60 * 24 //24 hours
   }
 }

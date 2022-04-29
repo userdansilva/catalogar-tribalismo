@@ -1,22 +1,11 @@
-import { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { ParsedUrlQueryInput } from 'querystring'
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
-import { api } from '../services/api'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 import { FormattedDesign } from '../types/Design'
 
 interface DesignContextProps {
   designs: FormattedDesign[]
-  setDesigns: Dispatch<SetStateAction<FormattedDesign[]>>
-  setDesignsAll: Dispatch<SetStateAction<FormattedDesign[]>>
+  getDesigns: (designs: FormattedDesign[]) => void
   total: number
   limit: number
   page: number
@@ -62,6 +51,11 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
     if ((type === 'search' && !value) || (type !== 'search' && !search)) delete query.search
 
     router.push({ query })
+  }
+
+  const getDesigns = (designs: FormattedDesign[]) => {
+    setDesignsAll(designs)
+    setDesigns(designs)
   }
 
   useEffect(() => {
@@ -148,8 +142,7 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
     <DesignContext.Provider
       value={{
         designs,
-        setDesigns,
-        setDesignsAll,
+        getDesigns,
         total,
         limit,
         page,
