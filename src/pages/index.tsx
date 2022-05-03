@@ -49,7 +49,10 @@ const Home: NextPage<HomeProps> = ({designs:designsCached, categories, products}
 
       <Designs data={designs}/>
 
-      <Pagination total={total} limit={limit} currentPage={page} goToPage={handleChangePage}/>
+      {total > designs.length && (
+
+        <Pagination total={total} limit={limit} currentPage={page} goToPage={handleChangePage}/>
+      )}
 
       <Footer />
     </Fragment>
