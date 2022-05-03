@@ -1,8 +1,9 @@
 .container {
-  border-radius: 15px;
+  border-radius: 0.9rem;
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  background-color: var(--gray-100);
 
   &:hover {
     .cover {
