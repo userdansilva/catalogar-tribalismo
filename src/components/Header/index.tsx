@@ -10,11 +10,11 @@ import { useState } from 'react'
 
 const Navegation = () => (
   <nav>
-    <Link href="/">
-      <a>Site da Loja</a>
+    <Link href="https://www.tribalismo.com.br/">
+      <a target="_blank">Site da Loja</a>
     </Link>
-    <Link href="/">
-      <a>Instagram</a>
+    <Link href="https://www.instagram.com/tribalismo/">
+      <a target="_blank">Instagram</a>
     </Link>
   </nav>
 )
