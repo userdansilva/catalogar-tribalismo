@@ -12,7 +12,9 @@ export const Footer = () => {
           <p>Tribalismo | Produtos Personalizados</p>
           <p>Milhares de opções de artes e frases para você e seu grupo se inspirarem!</p>
         </div>
-        <Link href="/">Compre agora</Link>
+        <Link href="https://www.tribalismo.com.br/">
+          <a target="_blank">Compre agora</a>
+        </Link>
       </div>
     </footer>
   )
