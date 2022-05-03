@@ -10,7 +10,9 @@ import '../styles/globals.scss'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
-      <Analytics />
+      {process.env.NODE_ENV !== 'development' && (
+        <Analytics />
+      )}
       <DesignProvider>
         <Component {...pageProps} />
       </DesignProvider>
