@@ -29,15 +29,15 @@
 }
 
 .active {
-  background: var(--violet-600);
+  background: var(--brand-600);
 
   svg {
-    color: var(--violet-600);
+    color: var(--brand-600);
     transform: rotate(10deg);
   }
 
   button {
-    background: var(--violet-200);
+    background: var(--brand-200);
   }
 }
 

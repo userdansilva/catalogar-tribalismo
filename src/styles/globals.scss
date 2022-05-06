@@ -13,8 +13,8 @@
   --gray-400: #888888;
   --gray-700: #434343;
 
-  --violet-200: #eae0fc;
-  --violet-600: #7c3aed;
+  --brand-200: #eae0fc;
+  --brand-600: #7c3aed;
 
   --gradient: linear-gradient(120deg, rgba(169, 28, 255, 1) 0%, rgba(0, 193, 255, 1) 100%);
 }
@@ -74,6 +74,11 @@ a {
   position: relative;
   border-radius: 1rem;
   outline: none;
+  max-height: calc(100vh - 100px);
+}
+
+.react-modal-container {
+  height: 100%;
 }
 
 @media (max-width: 640px) {
