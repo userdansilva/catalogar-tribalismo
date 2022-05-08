@@ -1,6 +1,6 @@
 import { Category as CategoryType } from '../../../types/Category'
 import { useDesign } from '../../../hooks/useDesign'
-import { getIconsById } from '../../../services/icons'
+import { getIconsById } from '../../../utils/icons'
 
 interface CategoryProps {
   data: CategoryType
@@ -24,7 +24,7 @@ export const Category = ({ data: category, isActive }: CategoryProps) => {
       >
         {getIconsById(category.id).icon}
       </button>
-      <span className="mt-2 inline-block w-16 truncate">{category.name}</span>
+      <span className="mt-2 inline-block w-[72px] truncate text-center">{category.name}</span>
     </div>
   )
 }

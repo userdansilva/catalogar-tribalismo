@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { FiSearch, FiX } from 'react-icons/fi'
+
 import { useDesign } from '../../hooks/useDesign'
 
 export const Searching = () => {

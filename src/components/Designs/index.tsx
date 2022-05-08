@@ -1,7 +1,10 @@
-import { FormattedDesign } from '../../types/Design'
-import { Design } from './Design'
-import notResultImage from '../../../public/images/no_result.svg'
 import Image from 'next/image'
+
+import { Design } from './Design'
+
+import notResultImage from '../../../public/images/no_result.svg'
+
+import { FormattedDesign } from '../../types/Design'
 
 interface DesingnsProps {
   data: FormattedDesign[]

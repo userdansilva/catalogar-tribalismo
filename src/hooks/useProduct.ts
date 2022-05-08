@@ -1,6 +1,8 @@
-import { AxiosResponse } from 'axios'
 import { useEffect, useState } from 'react'
-import { api } from '../services/api'
+import { AxiosResponse } from 'axios'
+
+import { api } from '../lib/api'
+
 import { Product } from '../types/Product'
 
 export const useProduct = () => {

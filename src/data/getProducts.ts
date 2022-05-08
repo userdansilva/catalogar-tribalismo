@@ -1,4 +1,5 @@
-import execQuery from '../services/mysql'
+import execQuery from '../lib/mysql'
+
 import { Product } from '../types/Product'
 
 export const getProducts = async () => {

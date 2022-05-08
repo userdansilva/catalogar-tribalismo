@@ -1,4 +1,5 @@
 import { useDesign } from '../../../hooks/useDesign'
+
 import { Product as ProductType } from '../../../types/Product'
 
 interface ProductProps {

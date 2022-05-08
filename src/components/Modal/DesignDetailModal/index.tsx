@@ -1,8 +1,11 @@
-import { Dialog, Transition } from '@headlessui/react'
-import Image from 'next/image'
 import { Fragment } from 'react'
+import Image from 'next/image'
+import { Dialog, Transition } from '@headlessui/react'
+
 import { Modal } from '..'
-import { getIconsById } from '../../../services/icons'
+
+import { getIconsById } from '../../../utils/icons'
+
 import { FormattedDesign } from '../../../types/Design'
 
 interface DesignDetailModalProps {

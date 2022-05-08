@@ -1,6 +1,8 @@
-import { useDesign } from '../../hooks/useDesign'
-import { Product as ProductType } from '../../types/Product'
 import { Product } from './Product'
+
+import { useDesign } from '../../hooks/useDesign'
+
+import { Product as ProductType } from '../../types/Product'
 
 interface ProductsProps {
   data: ProductType[]

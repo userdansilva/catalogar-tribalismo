@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { FiMenu, FiX } from 'react-icons/fi'
+
+import { Search } from './Search'
 
 import logo from '../../../public/images/logo-black.svg'
-import Link from 'next/link'
-import { Search } from './Search'
-import { useState } from 'react'
-import { FiMenu, FiX } from 'react-icons/fi'
 
 const Navegation = () => (
   <nav className="flex flex-col gap-8 child:px-4 child:py-2 child:outline-brand-600 md:flex-row">
@@ -35,9 +36,11 @@ export const Header = () => {
         >
           {openMenu ? <FiX /> : <FiMenu />}
         </button>
-        <div className="mr-8">
-          <Image src={logo} alt="Logo da Tribalismo" width={150} height={30} />
-        </div>
+        <Link href="/">
+          <a className="mr-8">
+            <Image src={logo} alt="Logo da Tribalismo" width={150} height={30} />
+          </a>
+        </Link>
         <div className="hidden md:block">
           <Navegation />
         </div>

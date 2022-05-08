@@ -1,5 +1,5 @@
-import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, ReactChild } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
 import { FiX } from 'react-icons/fi'
 
 interface ModalProps {

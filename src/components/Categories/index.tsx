@@ -1,6 +1,8 @@
-import { useDesign } from '../../hooks/useDesign'
-import { Category as CategoryType } from '../../types/Category'
 import { Category } from './Category'
+
+import { useDesign } from '../../hooks/useDesign'
+
+import { Category as CategoryType } from '../../types/Category'
 
 interface CategoriesProps {
   data: CategoryType[]

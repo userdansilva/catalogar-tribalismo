@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { FiSearch } from 'react-icons/fi'
+
 import { useDesign } from '../../../hooks/useDesign'
 
 interface SearchProps {

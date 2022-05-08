@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import execQuery from '../../services/mysql'
+import execQuery from '../../lib/mysql'
 import { Design, Image, Category, Product, FormattedDesign } from '../../types/Design'
 
 const Designs = async (req: NextApiRequest, res: NextApiResponse) => {
