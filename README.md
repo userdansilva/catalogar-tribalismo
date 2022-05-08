@@ -1,5 +1,11 @@
 # Welcome to Catalogar 👋
 
+<div>
+  <img src="https://img.shields.io/github/issues/userdansilva/catalogar-tribalismo.svg">
+  <img src="https://img.shields.io/github/issues-pr/userdansilva/catalogar-tribalismo.svg">
+  <img src="https://img.shields.io/github/issues-pr-closed/userdansilva/catalogar-tribalismo.svg">
+<div>
+
 Catalogar is a service that provides a online calog for companies display products designs
 
 ![alt text](/public/images/readme/main.png)
