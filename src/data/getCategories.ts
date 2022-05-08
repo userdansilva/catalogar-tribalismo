@@ -1,4 +1,5 @@
-import execQuery from '../services/mysql'
+import execQuery from '../lib/mysql'
+
 import { Category } from '../types/Category'
 
 export const getCategories = async () => {

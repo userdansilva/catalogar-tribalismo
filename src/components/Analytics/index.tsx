@@ -1,5 +1,5 @@
-import Script from 'next/script'
 import { Fragment } from 'react'
+import Script from 'next/script'
 
 export const Analytics = () => (
   <Fragment>

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import execQuery from '../../services/mysql'
+import execQuery from '../../lib/mysql'
 
 interface Product {
   id: number

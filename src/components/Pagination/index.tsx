@@ -1,5 +1,4 @@
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import styles from './styles.module.scss'
 
 interface PaginationProps {
   total: number
@@ -20,7 +19,7 @@ export const Pagination = (props: PaginationProps) => {
       if (i <= totalPages && i >= 1) {
         initial.push(
           <button
-            className={`${i == currentPage && styles.active}`}
+            className={`${i == currentPage && 'border-b-2 border-brand-600'}`}
             key={i}
             onClick={() => goToPage(i)}
           >
@@ -34,8 +33,8 @@ export const Pagination = (props: PaginationProps) => {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
+    <div className="mt-12 flex justify-center">
+      <div className="flex gap-4 child:p-4">
         <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage - 1 < 1}>
           <FiChevronLeft />
         </button>

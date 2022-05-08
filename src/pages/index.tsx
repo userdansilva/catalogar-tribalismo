@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Head from 'next/head'
 
 import type { GetStaticProps, NextPage } from 'next'
@@ -19,6 +19,8 @@ import { useDesign } from '../hooks/useDesign'
 import { getDesigns } from '../data/getDesigns'
 import { getCategories } from '../data/getCategories'
 import { getProducts } from '../data/getProducts'
+import { Searching } from '../components/Searching'
+import { useRouter } from 'next/router'
 
 interface HomeProps {
   designs: FormattedDesign[]
@@ -26,32 +28,41 @@ interface HomeProps {
   products: Product[]
 }
 
-const Home: NextPage<HomeProps> = ({designs:designsCached, categories, products}) => {
+const Home: NextPage<HomeProps> = ({ designs: designsCached, categories, products }) => {
   const { designs, total, limit, page, handleChangePage, getDesigns } = useDesign()
+  const { query } = useRouter()
+
+  const [isSearching, setIsSearching] = useState(false)
+
+  useEffect(() => setIsSearching(!!query.search), [query])
 
   useEffect(() => {
     getDesigns(designsCached)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <Fragment>
       <Head>
         <title>Catálogo de Artes - Tribalismo</title>
-        <meta name="description" content="Milhares de opções de artes e frases para você e seu grupo se inspirarem!" />
+        <meta
+          name="description"
+          content="Milhares de opções de artes e frases para você e seu grupo se inspirarem!"
+        />
       </Head>
 
       <Header />
 
-      <Categories data={categories}/>
+      <Categories data={categories} />
 
-      <Products data={products}/>
+      <Products data={products} />
 
-      <Designs data={designs}/>
+      {isSearching && <Searching />}
+
+      <Designs data={designs} />
 
       {total > designs.length && (
-
-        <Pagination total={total} limit={limit} currentPage={page} goToPage={handleChangePage}/>
+        <Pagination total={total} limit={limit} currentPage={page} goToPage={handleChangePage} />
       )}
 
       <Footer />
@@ -61,7 +72,7 @@ const Home: NextPage<HomeProps> = ({designs:designsCached, categories, products}
 
 export default Home
 
-export const getStaticProps:GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const designs = await getDesigns()
   const categories = await getCategories()
   const products = await getProducts()
