@@ -83,7 +83,6 @@ export const getStaticProps: GetStaticProps = async () => {
       categories,
       products
     },
-    fallback: 'blocking',
     revalidate: 60 * 60 * 24 * 7 //7 days
   }
 }
