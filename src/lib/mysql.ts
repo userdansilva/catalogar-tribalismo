@@ -11,7 +11,6 @@ const execQuery = async (query: string, values: (string | number)[] = []) => {
 
 
   try {
-    await connection.connect();
     const [data] = await connection.execute(query, values);
     connection.end();
 
