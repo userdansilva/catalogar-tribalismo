@@ -5,7 +5,7 @@ import { useDesign } from '../../hooks/useDesign'
 import { Category as CategoryType } from '../../types/Category'
 
 interface CategoriesProps {
-  data: CategoryType[]
+  data: CategoryType[] | null
 }
 
 export const Categories = ({ data: categories }: CategoriesProps) => {
@@ -20,7 +20,7 @@ export const Categories = ({ data: categories }: CategoriesProps) => {
             data={{ id: 0, name: 'Todas', favorite: 'N' }}
             isActive={selectedCategory === 0}
           />
-          {categories.map(category => (
+          {categories?.map(category => (
             <Category
               data={category}
               key={category.id}

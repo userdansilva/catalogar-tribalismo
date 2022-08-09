@@ -6,7 +6,7 @@ import { FormattedDesign } from '../types/Design'
 
 interface DesignContextProps {
   designs: FormattedDesign[]
-  getDesigns: (designs: FormattedDesign[]) => void
+  getDesigns: (designs: FormattedDesign[] | null) => void
   total: number
   limit: number
   page: number
@@ -54,9 +54,11 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
     router.push({ query })
   }
 
-  const getDesigns = (designs: FormattedDesign[]) => {
-    setDesignsAll(designs)
-    setDesigns(designs)
+  const getDesigns = (designs: FormattedDesign[] | null) => {
+    if (designs) {
+      setDesignsAll(designs)
+      setDesigns(designs)
+    }
   }
 
   useEffect(() => {
