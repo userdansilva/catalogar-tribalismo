@@ -3,7 +3,7 @@ import execQuery from '../lib/mysql'
 import { Category, Design, FormattedDesign, Product } from '../types/Design'
 
 export const getDesigns = async () => {
-  const clientId = process.env.CLIENT_ID
+  const clientId = process.env.CLIENT_ID as string
 
   const query = `
     select d.id, d.title, d.tags, d.product_id, p.name as product_name, p.archived as product_archived, cd.category_id, c.name as category_name, c.color_bg as category_bg, c.color_text as category_text, c.archived as category_archived, pic.id as image_id, pic.url as image_url, pic.url_nextgen as image_webp_url, pic.position as image_position from designs as d
@@ -11,10 +11,10 @@ export const getDesigns = async () => {
     left join category_design as cd on d.id = cd.design_id
     left join categories as c on cd.category_id = c.id
     left join pictures as pic on d.id = pic.design_id
-    where d.user_id = ${clientId}
+    where d.user_id = ?
     ORDER BY d.id ASC
   `
-  const result = (await execQuery(query)) as Design[]
+  const result = (await execQuery(query, [clientId])) as Design[]
 
   const formattedResult = result
     .reduce((acc: FormattedDesign[], design: Design) => {
