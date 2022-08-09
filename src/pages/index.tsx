@@ -28,7 +28,7 @@ interface HomeProps {
   products: Product[]
 }
 
-const Home: NextPage<HomeProps> = ({ designs: designsCached, categories, products }) => {
+const Home: NextPage<HomeProps> = ({ designs: designsCached = [], categories = [], products = [] }) => {
   const { designs, total, limit, page, handleChangePage, getDesigns } = useDesign()
   const { query } = useRouter()
 
