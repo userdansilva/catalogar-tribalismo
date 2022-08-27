@@ -66,7 +66,8 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
 
     if (product) setProcuct(parseInt(product as string))
     if (category) setCategory(parseInt(category as string))
-    if (search) setSearch(search as string)
+    // This "any" is only for fixing bug from url of Google SEO
+    if (search && search !== 'any') setSearch(search as string)
     if (page) setPage(parseInt(page as string))
     else setPage(1)
   }, [router.query])
