@@ -12,7 +12,8 @@ import {
   FaTheaterMasks,
   FaThLarge,
   FaUserFriends,
-  FaUserGraduate
+  FaUserGraduate,
+  FaFireAlt
 } from 'react-icons/fa'
 
 export const getIconsById = (id: number) => {
@@ -22,11 +23,23 @@ export const getIconsById = (id: number) => {
       icon: <FaAsterisk />
     },
     {
+      id: 213, // Diversos
+      icon: <FaAsterisk />
+    },
+    {
       id: 8, // Bebidas
       icon: <FaBeer />
     },
     {
+      id: 211, // Bebida
+      icon: <FaBeer />
+    },
+    {
       id: 9, // Terceirão
+      icon: <FaGraduationCap />
+    },
+    {
+      id: 209, // Terceirão
       icon: <FaGraduationCap />
     },
     {
@@ -42,7 +55,15 @@ export const getIconsById = (id: number) => {
       icon: <FaRegListAlt />
     },
     {
+      id: 212, // Cursos
+      icon: <FaRegListAlt />
+    },
+    {
       id: 13, // Amizades
+      icon: <FaUserFriends />
+    },
+    {
+      id: 210, // Amigos
       icon: <FaUserFriends />
     },
     {
@@ -68,6 +89,10 @@ export const getIconsById = (id: number) => {
     {
       id: 37, // Em destaque
       icon: <FaMedal />
+    },
+    {
+      id: 215, // Novas
+      icon: <FaFireAlt />
     }
   ]
 
