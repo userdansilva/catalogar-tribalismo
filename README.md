@@ -20,7 +20,7 @@ Catalogar is a service that provides a online calog for companies display produc
 - [Links](#links)
 <hr/>
 
-<br>
+<br> 
 
 ## What is this repository?
 
