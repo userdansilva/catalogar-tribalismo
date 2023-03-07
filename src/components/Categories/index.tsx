@@ -20,7 +20,15 @@ export const Categories = ({ data: categories }: CategoriesProps) => {
             data={{ id: 0, name: 'Todas', favorite: 'N' }}
             isActive={selectedCategory === 0}
           />
-          {categories?.map(category => (
+          {categories?.sort((a) => {
+            // This sort put the categories "Novas" at first
+            // 215 is its id
+            if (a.id === 215) {
+              return -1
+            }
+
+            return 1
+          }).map(category => (
             <Category
               data={category}
               key={category.id}
