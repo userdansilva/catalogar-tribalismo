@@ -10,7 +10,7 @@ Catalogar is a service that provides a online calog for companies display produc
 
 ![alt text](/public/images/readme/main.png)
 
-## What will you find here?
+## What will you find here? 
 
 - [What is this repository?](#what-is-this-repository)
 - [What is its purpose?](#what-is-its-purpose)
