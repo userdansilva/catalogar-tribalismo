@@ -110,8 +110,10 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
 
           let hasCategory = true
           if (category !== 0) {
+            hasCategory = false
+
             for (var cat of design.categories) {
-              if (cat.id !== category) hasCategory = false
+              if (cat.id === category) hasCategory = true
             }
           }
 
