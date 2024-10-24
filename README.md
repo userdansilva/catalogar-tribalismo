@@ -1,4 +1,4 @@
-# Welcome to Catalogar 👋
+# Welcome to Catalogar 👋👋
 
 <div>
   <img src="https://img.shields.io/github/issues/userdansilva/catalogar-tribalismo.svg">
