@@ -5,7 +5,7 @@ import { FiMenu, FiX } from 'react-icons/fi'
 
 import { Search } from './Search'
 
-import logo from '../../../public/images/logo-black.svg'
+import logo from '../../../public/images/logo-nova.svg'
 
 const Navegation = () => (
   <nav className="flex flex-col gap-8 child:px-4 child:py-2 child:outline-brand-600 md:flex-row">
