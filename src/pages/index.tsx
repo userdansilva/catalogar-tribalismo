@@ -14,7 +14,7 @@ import { FormattedDesign } from '../types/Design'
 import { Category } from '../types/Category'
 import { Product } from '../types/Product'
 
-import { useDesign } from '../hooks/useDesign'
+import { DesignProvider, useDesign } from '../hooks/useDesign'
 
 import { getDesigns } from '../data/getDesigns'
 import { getCategories } from '../data/getCategories'
@@ -28,29 +28,17 @@ interface HomeProps {
   products: Product[]
 }
 
-const Home: NextPage<HomeProps> = ({ designs: designsCached = null, categories = null, products = null }) => {
-  const { designs, total, limit, page, handleChangePage, getDesigns } = useDesign()
+function Content({ categories, products }: Pick<HomeProps, "categories" | "products">) {
+  const { designs, total, limit, page, handleChangePage } = useDesign()
+
   const { query } = useRouter()
 
   const [isSearching, setIsSearching] = useState(false)
 
   useEffect(() => setIsSearching(!!query.search), [query])
 
-  useEffect(() => {
-    getDesigns(designsCached)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
-    <Fragment>
-      <Head>
-        <title>Catálogo de Artes - Tribalismo</title>
-        <meta
-          name="description"
-          content="Milhares de opções de artes e frases para você e seu grupo se inspirarem!"
-        />
-      </Head>
-
+    <>
       <Header />
 
       <Categories data={categories} />
@@ -62,10 +50,33 @@ const Home: NextPage<HomeProps> = ({ designs: designsCached = null, categories =
       <Designs data={designs} />
 
       {total > designs.length && (
-        <Pagination total={total} limit={limit} currentPage={page} goToPage={handleChangePage} />
+        <Pagination
+          total={total}
+          limit={limit}
+          currentPage={page}
+          goToPage={handleChangePage}
+        />
       )}
 
       <Footer />
+    </>
+  )
+}
+
+const Home: NextPage<HomeProps> = ({ designs: designsCached, categories, products }) => {
+  return (
+    <Fragment>
+      <Head>
+        <title>Catálogo de Artes - Tribalismo</title>
+        <meta
+          name="description"
+          content="Milhares de opções de artes e frases para você e seu grupo se inspirarem!"
+        />
+      </Head>
+
+      <DesignProvider designs={designsCached}>
+        <Content categories={categories} products={products} />
+      </DesignProvider>
     </Fragment>
   )
 }

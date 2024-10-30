@@ -6,7 +6,6 @@ import { FormattedDesign } from '../types/Design'
 
 interface DesignContextProps {
   designs: FormattedDesign[]
-  getDesigns: (designs: FormattedDesign[] | null) => void
   total: number
   limit: number
   page: number
@@ -20,9 +19,14 @@ interface DesignContextProps {
 
 const DesignContext = createContext<DesignContextProps>({} as DesignContextProps)
 
-export const DesignProvider = ({ children }: { children: ReactNode }) => {
-  const [designsAll, setDesignsAll] = useState<FormattedDesign[]>([])
-  const [designs, setDesigns] = useState<FormattedDesign[]>([])
+export const DesignProvider = ({
+  children,
+  designs: designsAll,
+}: {
+  children: ReactNode,
+  designs: FormattedDesign[]
+}) => {
+  const [designs, setDesigns] = useState<FormattedDesign[]>(designsAll)
   const [page, setPage] = useState(1)
   const [product, setProcuct] = useState(0)
   const [category, setCategory] = useState(0)
@@ -52,13 +56,6 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
     if ((type === 'search' && !value) || (type !== 'search' && !search)) delete query.search
 
     router.push({ query })
-  }
-
-  const getDesigns = (designs: FormattedDesign[] | null) => {
-    if (designs) {
-      setDesignsAll(designs)
-      setDesigns(designs)
-    }
   }
 
   useEffect(() => {
@@ -148,7 +145,6 @@ export const DesignProvider = ({ children }: { children: ReactNode }) => {
     <DesignContext.Provider
       value={{
         designs,
-        getDesigns,
         total,
         limit,
         page,
