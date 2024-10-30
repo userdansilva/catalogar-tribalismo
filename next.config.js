@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['catalogar-storage.s3.sa-east-1.amazonaws.com']
+    domains: [
+      "catalogar-storage.s3.sa-east-1.amazonaws.com",
+      "copy-catalogar.s3.sa-east-1.amazonaws.com"
+    ]
   }
 }
 
