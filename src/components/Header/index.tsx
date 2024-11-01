@@ -32,10 +32,8 @@ export const Header = () => {
         >
           {openMenu ? <FiX /> : <FiMenu />}
         </button>
-        <Link href="/">
-          <span className="mr-8">
-            <Image src={logo} alt="Logo da Tribalismo" width={150} height={30} />
-          </span>
+        <Link href="/" className="mr-8">
+          <Image src={logo} alt="Logo da Tribalismo" width={150} height={30} />
         </Link>
         <div className="hidden md:block">
           <Navegation />

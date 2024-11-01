@@ -3,18 +3,20 @@ import Script from 'next/script'
 
 export const Analytics = () => (
   <Fragment>
-    {/* <Script src="https://www.googletagmanager.com/gtag/js?id=G-WNXGH9QP18" strategy="lazyOnload" /> */}
+    {/* Google  */}
+    <Script src="https://www.googletagmanager.com/gtag/js?id=G-F95ZEV65MK" strategy="lazyOnload" />
     <Script strategy="lazyOnload" id="google-tags">
       {`
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-K6PVMH8');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-F95ZEV65MK');
       `}
     </Script>
 
-    {/* <Script strategy="lazyOnload" id="fc-pixel-tags">
+    {/* Facebook */}
+    <Script strategy="lazyOnload" id="fc-pixel-tags">
       {`
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -24,25 +26,20 @@ export const Analytics = () => (
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '165638437257579');
+        fbq('init', '817624483111898');
         fbq('track', 'PageView');
       `}
-    </Script> */}
+    </Script>
 
-    {/* <noscript
+    <noscript
       dangerouslySetInnerHTML={{
         __html: `<img
         height="1"
         width="1"
         style="display:none"
-        src="https://www.facebook.com/tr?id=165638437257579&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=817624483111898&ev=PageView&noscript=1"
       />`
       }}
     />
-
-    <Script
-      src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/7265390e-d6cb-481b-8148-9f158b48455d-loader.js"
-      strategy="lazyOnload"
-    /> */}
   </Fragment>
 )
