@@ -1,5 +1,5 @@
 import { Fragment, ReactChild } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
 import { FiX } from 'react-icons/fi'
 
 interface ModalProps {
@@ -11,7 +11,7 @@ interface ModalProps {
 export const Modal = ({ isOpen, onClose, children }: ModalProps) => (
   <Transition show={isOpen}>
     <Dialog onClose={() => onClose()} className="relative z-50">
-      <Transition.Child
+      <TransitionChild
         as={Fragment}
         enter="ease-out duration-300"
         enterFrom="opacity-0"
@@ -21,9 +21,9 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => (
         leaveTo="opacity-0"
       >
         <div className="fixed inset-0 bg-slate-900/30" aria-hidden="true" />
-      </Transition.Child>
+      </TransitionChild>
 
-      <Transition.Child
+      <TransitionChild
         as={Fragment}
         enter="transition duration-300 ease-out"
         enterFrom="transform scale-95 opacity-0"
@@ -33,7 +33,7 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => (
         leaveTo="transform scale-95 opacity-0"
       >
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <Dialog.Panel className="relative mx-auto max-h-full max-w-[1120px] overflow-x-scroll rounded-xl bg-white p-10 lg:min-w-full xl:min-w-[1120px]">
+          <DialogPanel className="relative mx-auto max-h-full max-w-[1120px] overflow-x-scroll rounded-xl bg-white p-10 lg:min-w-full xl:min-w-[1120px]">
             {children}
             <button
               onClick={() => onClose()}
@@ -41,9 +41,9 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => (
             >
               <FiX size={24} />
             </button>
-          </Dialog.Panel>
+          </DialogPanel>
         </div>
-      </Transition.Child>
+      </TransitionChild>
     </Dialog>
   </Transition>
 )

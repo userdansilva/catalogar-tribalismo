@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
-import { Dialog, Transition } from '@headlessui/react'
+import { DialogTitle, TransitionChild } from '@headlessui/react'
 
 import { Modal } from '..'
 
@@ -19,7 +19,7 @@ export const DesignDetailModal = ({ isOpen, onClose, design }: DesignDetailModal
     <div className="flex flex-col gap-8 lg:flex-row">
       <Image src={design.images[0].webp} alt={design.title} width={600} height={600} />
 
-      <Transition.Child
+      <TransitionChild
         as={Fragment}
         enter="transition duration-[300ms] ease-in"
         enterFrom="transform scale-95 opacity-0"
@@ -36,14 +36,14 @@ export const DesignDetailModal = ({ isOpen, onClose, design }: DesignDetailModal
               </span>
             ))}
           </div>
-          <Dialog.Title className="text-2xl font-bold text-slate-800 line-clamp-3 md:text-3xl">
+          <DialogTitle className="text-2xl font-bold text-slate-800 line-clamp-3 md:text-3xl">
             {design.title}
-          </Dialog.Title>
+          </DialogTitle>
           <span className="mr-auto rounded-md bg-brand-600 px-3 py-1 text-white">
             ID: {design.id}
           </span>
         </div>
-      </Transition.Child>
+      </TransitionChild>
     </div>
   </Modal>
 )

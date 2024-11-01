@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { FormattedDesign } from '../../../types/Design'
-// import { DesignDetailModal } from '../../Modal/DesignDetailModal'
+import { DesignDetailModal } from '../../Modal/DesignDetailModal'
 
 interface DesignProps {
   data: FormattedDesign
@@ -12,13 +12,10 @@ export const Design = ({ data: design }: DesignProps) => {
 
   const handleCloseModal = () => setModalOpen(false)
 
-  // const onPressEnter = (event: KeyboardEvent) => event.key === 'Enter' && setModalOpen(true)
-
   return (
     <div
       className="group relative cursor-pointer overflow-hidden rounded-2xl bg-slate-100 outline-none focus-visible:shadow-lg focus-visible:shadow-brand-400 focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
       onClick={() => setModalOpen(true)}
-      // onKeyDown={(event: unknown) => onPressEnter(event as KeyboardEvent)}
       tabIndex={0}
     >
       <Image src={design.images[0].webp} alt={design.title} width={600} height={600} />
@@ -29,7 +26,7 @@ export const Design = ({ data: design }: DesignProps) => {
           ID: {design.id}
         </span>
       </div>
-      {/* <DesignDetailModal isOpen={isModalOpen} onClose={handleCloseModal} design={design} /> */}
+      <DesignDetailModal isOpen={isModalOpen} onClose={handleCloseModal} design={design} />
     </div>
   )
 }
