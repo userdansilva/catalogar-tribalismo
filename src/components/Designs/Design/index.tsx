@@ -26,7 +26,7 @@ export const Design = ({ data: design }: DesignProps) => {
           ID: {design.id}
         </span>
       </div>
-      <DesignDetailModal isOpen={isModalOpen} onClose={handleCloseModal} design={design} />
+      {/* <DesignDetailModal isOpen={isModalOpen} onClose={handleCloseModal} design={design} /> */}
     </div>
   )
 }
