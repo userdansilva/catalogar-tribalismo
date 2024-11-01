@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { getIconsById } from '../../../utils/icons'
 import { FormattedDesign } from '../../../types/Design'
 import { FiX } from 'react-icons/fi'
+import { getIconsByName } from '../../../utils/get-icon-by-name'
 
 interface DesignDetailModalProps {
   isOpen: boolean
@@ -38,7 +38,7 @@ export function DesignDetailModal({
                     key={category.id}
                     className="flex items-center gap-1 rounded-md bg-brand-200 px-3 py-1 text-brand-600"
                   >
-                    {getIconsById(category.id).icon} {category.name}
+                    {getIconsByName(category.name)} {category.name}
                   </span>
                 ))}
               </div>
