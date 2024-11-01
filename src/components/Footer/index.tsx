@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import logo from '../../../public/images/logo-nova.svg'
 
@@ -12,14 +11,9 @@ export const Footer = () => {
           <p>Tribalismo | Produtos Personalizados</p>
           <p>Milhares de opções de artes e frases para você e seu grupo se inspirarem!</p>
         </div>
-        <Link href="https://www.tribalismo.com.br/">
-          <a
-            target="_blank"
-            className=" whitespace-nowrap rounded-lg bg-brand-600 p-4 font-[600] text-white"
-          >
-            Compre agora
-          </a>
-        </Link>
+        <a href="https://www.tribalismo.com.br/" target="_blank" className=" whitespace-nowrap rounded-lg bg-brand-600 p-4 font-[600] text-white">
+          Compre agora
+        </a>
       </div>
     </footer>
   )

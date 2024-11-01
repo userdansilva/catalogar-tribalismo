@@ -9,12 +9,8 @@ import logo from '../../../public/images/logo-nova.svg'
 
 const Navegation = () => (
   <nav className="flex flex-col gap-8 child:px-4 child:py-2 child:outline-brand-600 md:flex-row">
-    <Link href="https://www.tribalismo.com.br/">
-      <a target="_blank">Site da Loja</a>
-    </Link>
-    <Link href="https://www.instagram.com/tribalismo/">
-      <a target="_blank">Instagram</a>
-    </Link>
+    <a target="_blank" href="https://www.tribalismo.com.br/">Site da Loja</a>
+    <a target="_blank" href="https://www.instagram.com/tribalismo/">Instagram</a>
   </nav>
 )
 
@@ -37,9 +33,9 @@ export const Header = () => {
           {openMenu ? <FiX /> : <FiMenu />}
         </button>
         <Link href="/">
-          <a className="mr-8">
+          <span className="mr-8">
             <Image src={logo} alt="Logo da Tribalismo" width={150} height={30} />
-          </a>
+          </span>
         </Link>
         <div className="hidden md:block">
           <Navegation />
