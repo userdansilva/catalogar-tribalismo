@@ -1,4 +1,6 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, {
+  Html, Head, Main, NextScript,
+} from "next/document";
 
 export default class MyDocument extends Document {
   render() {
@@ -23,7 +25,7 @@ export default class MyDocument extends Document {
 
           {/* Favicon */}
           <link rel="shortcut icon" href="/favicon.png" type="image/x-ico; charset=binary" />
-          <link rel="icon" href="/favicon.png" type="image/x-ico; charset=binary"></link>
+          <link rel="icon" href="/favicon.png" type="image/x-ico; charset=binary" />
 
           {/* Open Graph */}
           <meta property="og:title" content="Catálogo de Artes da Tribalismo" />
@@ -38,10 +40,10 @@ export default class MyDocument extends Document {
             content="https://catalogar-storage.s3.sa-east-1.amazonaws.com/user/LaqoJMFXcM2mlq5zExhC4abAQfJWFBRljbexOmWq.jpg"
           />
           <meta property="og:locale" content="pt_BR" />
-          <meta property="og:site_name" content="Tribalismo"></meta>
+          <meta property="og:site_name" content="Tribalismo" />
 
           {/* Chrome Theme Color */}
-          <meta name="theme-color" content="#fff"></meta>
+          <meta name="theme-color" content="#fff" />
         </Head>
         <body>
           <noscript>
@@ -57,6 +59,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }

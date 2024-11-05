@@ -1,4 +1,4 @@
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 interface PaginationProps {
   total: number
@@ -7,34 +7,36 @@ interface PaginationProps {
   goToPage: (page: number) => void
 }
 
-export const Pagination = (props: PaginationProps) => {
-  const { total, limit, currentPage, goToPage } = props
+export function Pagination(props: PaginationProps) {
+  const {
+    total, limit, currentPage, goToPage,
+  } = props;
 
-  const totalPages = Math.ceil(total / limit)
+  const totalPages = Math.ceil(total / limit);
 
   const createIndexes = () => {
-    const initial = []
+    const initial = [];
 
     for (let i = currentPage - 1; i <= currentPage + 1; i++) {
       if (i <= totalPages && i >= 1) {
         initial.push(
           <button
-            className={`${i == currentPage && 'border-b-2 border-brand-600'}`}
+            className={`${i == currentPage && "border-b-2 border-brand-600"}`}
             key={i}
             onClick={() => goToPage(i)}
           >
             {i}
-          </button>
-        )
+          </button>,
+        );
       }
     }
 
-    return initial
-  }
+    return initial;
+  };
 
   return (
     <div className="mt-12 flex justify-center">
-      <div className="flex gap-4 child:p-4">
+      <div className="child:p-4 flex gap-4">
         <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage - 1 < 1}>
           <FiChevronLeft />
         </button>
@@ -50,5 +52,5 @@ export const Pagination = (props: PaginationProps) => {
         </button>
       </div>
     </div>
-  )
+  );
 }

@@ -1,8 +1,10 @@
-import Image from 'next/image'
-import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { FormattedDesign } from '../../../types/Design'
-import { FiX } from 'react-icons/fi'
-import { getIconsByName } from '../../../utils/get-icon-by-name'
+import Image from "next/image";
+import {
+  CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle,
+} from "@headlessui/react";
+import { FiX } from "react-icons/fi";
+import { FormattedDesign } from "../../../types/Design";
+import { getIconsByName } from "../../../utils/get-icon-by-name";
 
 interface DesignDetailModalProps {
   isOpen: boolean
@@ -22,36 +24,41 @@ export function DesignDetailModal({
           <CloseButton as={() => (
             <button
               onClick={() => onClose()}
-              className="absolute top-3 right-3 outline-brand-600 focus:text-brand-600 md:top-6 md:right-6"
+              className="absolute right-3 top-3 outline-brand-600 focus:text-brand-600 md:right-6 md:top-6"
             >
               <FiX size={24} />
             </button>
-          )} />
+          )}
+          />
 
           <div className="flex flex-col gap-8 lg:flex-row">
             <Image src={design.images[0].webp} alt={design.title} width={600} height={600} />
 
             <div className="flex flex-1 flex-col gap-3 md:gap-6">
               <div className="flex flex-wrap gap-2">
-                {design.categories.map(category => (
+                {design.categories.map((category) => (
                   <span
                     key={category.id}
                     className="flex items-center gap-1 rounded-md bg-brand-200 px-3 py-1 text-brand-600"
                   >
-                    {getIconsByName(category.name)} {category.name}
+                    {getIconsByName(category.name)}
+                    {" "}
+                    {category.name}
                   </span>
                 ))}
               </div>
-              <DialogTitle className="text-2xl font-bold text-slate-800 line-clamp-3 md:text-3xl">
+              <DialogTitle className="line-clamp-3 text-2xl font-bold text-slate-800 md:text-3xl">
                 {design.title}
               </DialogTitle>
               <span className="mr-auto rounded-md bg-brand-600 px-3 py-1 text-white">
-                ID: {design.id}
+                ID:
+                {" "}
+                {design.id}
               </span>
             </div>
           </div>
         </DialogPanel>
       </div>
     </Dialog>
-  )
+  );
 }

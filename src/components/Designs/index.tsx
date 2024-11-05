@@ -1,28 +1,27 @@
-import Image from 'next/image'
+import Image from "next/image";
 
-import { Design } from './Design'
+import { useState } from "react";
+import { Design } from "./Design";
 
-import notResultImage from '../../../public/images/no_result.svg'
+import notResultImage from "../../../public/images/no_result.svg";
 
-import { FormattedDesign } from '../../types/Design'
-import { useState } from 'react'
-import { DesignDetailModal } from '../Modal/DesignDetailModal'
+import { FormattedDesign } from "../../types/Design";
+import { DesignDetailModal } from "../Modal/DesignDetailModal";
 
 interface DesingnsProps {
   data: FormattedDesign[]
 }
 
-export const Designs = ({ data: designs }: DesingnsProps) => {
-  const isDesignsEmpty = designs.length === 0
+export function Designs({ data: designs }: DesingnsProps) {
+  const isDesignsEmpty = designs.length === 0;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState<FormattedDesign | null>(null);
 
-
   const handleOpenModal = (design: FormattedDesign) => {
     setSelectedDesign(design);
     setIsModalOpen(true);
-  }
+  };
 
   return (
     <>
@@ -37,7 +36,7 @@ export const Designs = ({ data: designs }: DesingnsProps) => {
             </div>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {designs.map(design => (
+              {designs.map((design) => (
                 <Design
                   data={design}
                   key={design.id}
@@ -57,5 +56,5 @@ export const Designs = ({ data: designs }: DesingnsProps) => {
         />
       )}
     </>
-  )
+  );
 }

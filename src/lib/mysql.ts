@@ -9,7 +9,6 @@ const execQuery = async (query: string, values: (string | number)[] = []) => {
     password: process.env.DB_PASSWORD,
   });
 
-
   try {
     const [data] = await connection.execute(query, values);
     connection.end();
