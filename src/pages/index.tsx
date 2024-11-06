@@ -1,9 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
+/* eslint-disable react/function-component-definition */
+import { useEffect, useState } from "react";
 import Head from "next/head";
 
 import type { GetStaticProps, NextPage } from "next";
 
 import { useRouter } from "next/router";
+import { Inter } from "next/font/google";
 import { Categories } from "../components/Categories";
 import { Designs } from "../components/Designs";
 import { Header } from "../components/Header";
@@ -21,6 +23,8 @@ import { getDesigns } from "../data/getDesigns";
 import { getCategories } from "../data/getCategories";
 import { getProducts } from "../data/getProducts";
 import { Searching } from "../components/Searching";
+
+const inter = Inter({ subsets: ["latin"] });
 
 interface HomeProps {
   designs: FormattedDesign[]
@@ -40,7 +44,7 @@ function Content({ categories, products }: Pick<HomeProps, "categories" | "produ
   useEffect(() => setIsSearching(!!query.search), [query]);
 
   return (
-    <>
+    <main className={inter.className}>
       <Header />
 
       <Categories data={categories} />
@@ -52,16 +56,18 @@ function Content({ categories, products }: Pick<HomeProps, "categories" | "produ
       <Designs data={designs} />
 
       {total > designs.length && (
-        <Pagination
-          total={total}
-          limit={limit}
-          currentPage={page}
-          goToPage={handleChangePage}
-        />
+        <div className="mt-12 flex justify-center">
+          <Pagination
+            total={total}
+            limit={limit}
+            currentPage={page}
+            goToPage={handleChangePage}
+          />
+        </div>
       )}
 
       <Footer />
-    </>
+    </main>
   );
 }
 
@@ -94,7 +100,6 @@ export const getStaticProps: GetStaticProps = async () => {
       categories,
       products,
     },
-    // revalidate: 60 * 60 * 24 * 1 // 1 day
     revalidate: 60 * 60 * 1 * 1, // 1 hour
   };
 };

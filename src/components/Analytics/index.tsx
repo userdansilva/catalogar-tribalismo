@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { Fragment } from "react";
 import Script from "next/script";
 
@@ -35,11 +36,11 @@ export function Analytics() {
       <noscript
         dangerouslySetInnerHTML={{
           __html: `<img
-        height="1"
-        width="1"
-        style="display:none"
-        src="https://www.facebook.com/tr?id=817624483111898&ev=PageView&noscript=1"
-      />`,
+            height="1"
+            width="1"
+            style="display:none"
+            src="https://www.facebook.com/tr?id=817624483111898&ev=PageView&noscript=1"
+          />`,
         }}
       />
     </>
