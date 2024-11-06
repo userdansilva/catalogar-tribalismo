@@ -1,4 +1,6 @@
-import { Beer, BookOpenCheck, Drama, GraduationCap, HandMetal, Laugh, Package, PartyPopper, Sparkles, Trophy } from 'lucide-react'
+import {
+  Beer, BookOpenCheck, Drama, GraduationCap, HandMetal, Laugh, Package, PartyPopper, Sparkles, Trophy,
+} from "lucide-react";
 
 export function getIconsByName(name: string) {
   if (name === "Terceirão") return <Trophy />;

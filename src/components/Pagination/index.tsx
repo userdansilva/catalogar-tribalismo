@@ -1,4 +1,4 @@
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PaginationProps {
   total: number
@@ -7,48 +7,71 @@ interface PaginationProps {
   goToPage: (page: number) => void
 }
 
-export const Pagination = (props: PaginationProps) => {
-  const { total, limit, currentPage, goToPage } = props
+export function Pagination(props: PaginationProps) {
+  const {
+    total, limit, currentPage, goToPage,
+  } = props;
 
-  const totalPages = Math.ceil(total / limit)
+  const totalPages = Math.ceil(total / limit);
 
   const createIndexes = () => {
-    const initial = []
+    const initial = [];
 
-    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+    for (let i = currentPage - 1; i <= currentPage + 1; i += 1) {
       if (i <= totalPages && i >= 1) {
         initial.push(
           <button
-            className={`${i == currentPage && 'border-b-2 border-brand-600'}`}
+            type="button"
+            className={`${i === currentPage && "border-b-2 border-brand-600"}`}
             key={i}
             onClick={() => goToPage(i)}
           >
             {i}
-          </button>
-        )
+          </button>,
+        );
       }
     }
 
-    return initial
-  }
+    return initial;
+  };
 
   return (
-    <div className="mt-12 flex justify-center">
-      <div className="flex gap-4 child:p-4">
-        <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage - 1 < 1}>
-          <FiChevronLeft />
+    <div className="flex gap-4 *:p-4">
+      <button
+        type="button"
+        onClick={() => goToPage(currentPage - 1)}
+        disabled={currentPage - 1 < 1}
+      >
+        <ChevronLeft className="size-4" />
+      </button>
+
+      {currentPage === totalPages && currentPage - 2 > 0 && (
+        <button
+          type="button"
+          onClick={() => goToPage(currentPage - 2)}
+        >
+          {currentPage - 2}
         </button>
-        {currentPage == totalPages && currentPage - 2 > 0 && (
-          <button onClick={() => goToPage(currentPage - 2)}>{currentPage - 2}</button>
-        )}
-        {createIndexes()}
-        {currentPage == 1 && currentPage + 2 <= totalPages && (
-          <button onClick={() => goToPage(currentPage + 2)}>{currentPage + 2}</button>
-        )}
-        <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage + 1 >= totalPages}>
-          <FiChevronRight />
+      )}
+
+      {createIndexes()}
+
+      {currentPage === 1 && currentPage + 2 <= totalPages && (
+        <button
+          type="button"
+          onClick={() => goToPage(currentPage + 2)}
+        >
+          {currentPage + 2}
         </button>
-      </div>
+      )}
+
+      <button
+        type="button"
+        onClick={() => goToPage(currentPage + 1)}
+        disabled={currentPage + 1 >= totalPages}
+      >
+        <ChevronRight className="size-4" />
+      </button>
     </div>
-  )
+  );
 }

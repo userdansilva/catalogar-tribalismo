@@ -1,10 +1,10 @@
-import Image from 'next/image'
+import Image from "next/image";
 
-import logo from '../../../public/images/logo-nova.svg'
+import logo from "../../../public/images/logo-nova.svg";
 
-export const Footer = () => {
+export function Footer() {
   return (
-    <footer className="mt-16 border-t-[1px] border-slate-100 py-8">
+    <footer className="mt-16 border-t border-slate-100 py-8">
       <div className="mx-auto flex max-w-[1760px] flex-col items-start justify-between gap-8 px-8 md:flex-row md:items-center">
         <Image src={logo} alt="Logo da Tribalismo" width={150} height={30} />
         <div>
@@ -16,5 +16,5 @@ export const Footer = () => {
         </a>
       </div>
     </footer>
-  )
+  );
 }

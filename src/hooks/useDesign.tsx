@@ -1,8 +1,10 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import {
+  createContext, ReactNode, useContext, useEffect, useState,
+} from "react";
+import { useRouter } from "next/router";
 
-import { ParsedUrlQueryInput } from 'querystring'
-import { FormattedDesign } from '../types/Design'
+import { ParsedUrlQueryInput } from "querystring";
+import { FormattedDesign } from "../types/Design";
 
 interface DesignContextProps {
   designs: FormattedDesign[]
@@ -17,129 +19,132 @@ interface DesignContextProps {
   handleSearch: (serach: string) => void
 }
 
-const DesignContext = createContext<DesignContextProps>({} as DesignContextProps)
+const DesignContext = createContext<DesignContextProps>({} as DesignContextProps);
 
-export const DesignProvider = ({
+export function DesignProvider({
   children,
   designs: designsAll,
 }: {
   children: ReactNode,
   designs: FormattedDesign[]
-}) => {
-  const [designs, setDesigns] = useState<FormattedDesign[]>(designsAll)
-  const [page, setPage] = useState(1)
-  const [product, setProcuct] = useState(0)
-  const [category, setCategory] = useState(0)
-  const [search, setSearch] = useState('')
-  const [total, setTotal] = useState(0)
+}) {
+  const [designs, setDesigns] = useState<FormattedDesign[]>(designsAll);
+  const [page, setPage] = useState(1);
+  const [product, setProcuct] = useState(0);
+  const [category, setCategory] = useState(0);
+  const [search, setSearch] = useState("");
+  const [total, setTotal] = useState(0);
 
-  const limit = 16
+  const limit = 16;
 
-  const router = useRouter()
+  const router = useRouter();
 
   const routerUpdater = (
     value: number | string,
-    type: 'page' | 'product' | 'category' | 'search'
+    type: "page" | "product" | "category" | "search",
   ) => {
-    const { product, category, page, search } = router.query
+    const {
+      product, category, page, search,
+    } = router.query;
 
     const query = {
-      search: type === 'search' ? value : search,
-      product: type === 'product' ? value : product,
-      category: type === 'category' ? value : category,
-      page: type === 'page' ? value : page
-    } as ParsedUrlQueryInput
+      search: type === "search" ? value : search,
+      product: type === "product" ? value : product,
+      category: type === "category" ? value : category,
+      page: type === "page" ? value : page,
+    } as ParsedUrlQueryInput;
 
-    if ((type === 'page' && value === 1) || (type !== 'page' && !page)) delete query.page
-    if ((type === 'product' && !value) || (type !== 'product' && !product)) delete query.product
-    if ((type === 'category' && !value) || (type !== 'category' && !category)) delete query.category
-    if ((type === 'search' && !value) || (type !== 'search' && !search)) delete query.search
+    if ((type === "page" && value === 1) || (type !== "page" && !page)) delete query.page;
+    if ((type === "product" && !value) || (type !== "product" && !product)) delete query.product;
+    if ((type === "category" && !value) || (type !== "category" && !category)) delete query.category;
+    if ((type === "search" && !value) || (type !== "search" && !search)) delete query.search;
 
-    router.push({ query })
-  }
+    router.push({ query });
+  };
 
   useEffect(() => {
-    const { page, product, category, search } = router.query
+    const {
+      page, product, category, search,
+    } = router.query;
 
-    if (product) setProcuct(parseInt(product as string))
-    if (category) setCategory(parseInt(category as string))
+    if (product) setProcuct(parseInt(product as string));
+    if (category) setCategory(parseInt(category as string));
     // This "any" is only for fixing bug from url of Google SEO
-    if (search && search !== 'any') setSearch(search as string)
-    if (page) setPage(parseInt(page as string))
-    else setPage(1)
-  }, [router.query])
+    if (search && search !== "any") setSearch(search as string);
+    if (page) setPage(parseInt(page as string));
+    else setPage(1);
+  }, [router.query]);
 
   const handleChangePage = (page: number) => {
-    routerUpdater(page, 'page')
-    setPage(page)
-  }
+    routerUpdater(page, "page");
+    setPage(page);
+  };
 
   const handleSelectProduct = (id: number) => {
-    routerUpdater(id, 'product')
-    setProcuct(id)
-  }
+    routerUpdater(id, "product");
+    setProcuct(id);
+  };
 
   const handleSelectCategory = (id: number) => {
-    routerUpdater(id, 'category')
-    setCategory(id)
-  }
+    routerUpdater(id, "category");
+    setCategory(id);
+  };
 
   const handleSearch = (search: string) => {
-    routerUpdater(search, 'search')
-    setSearch(search)
-  }
+    routerUpdater(search, "search");
+    setSearch(search);
+  };
 
-  const normalizeString = (value: string) =>
-    value
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
+  const normalizeString = (value: string) => value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 
   useEffect(() => {
     const paginateAndFilterDesigns = () => {
-      const start = page * limit - limit
-      const end = page * limit
+      const start = page * limit - limit;
+      const end = page * limit;
 
-      if (product !== 0 || category !== 0 || search !== '') {
-        const designs = [...designsAll].filter(design => {
-          let hasProduct = true
-          if (product !== 0) hasProduct = design.product.id === product
+      if (product !== 0 || category !== 0 || search !== "") {
+        const designs = [...designsAll].filter((design) => {
+          let hasProduct = true;
+          if (product !== 0) hasProduct = design.product.id === product;
 
-          let hasCategory = true
+          let hasCategory = true;
           if (category !== 0) {
-            hasCategory = false
+            hasCategory = false;
 
-            for (var cat of design.categories) {
-              if (cat.id === category) hasCategory = true
+            for (const cat of design.categories) {
+              if (cat.id === category) hasCategory = true;
             }
           }
 
-          if (!design.tags) design.tags = ''
+          if (!design.tags) design.tags = "";
 
-          let hasSearch = true
-          if (search !== '')
-            hasSearch =
-              normalizeString(design.title).includes(normalizeString(search)) ||
-              normalizeString(design.tags).includes(normalizeString(search))
+          let hasSearch = true;
+          if (search !== "") {
+            hasSearch = normalizeString(design.title).includes(normalizeString(search))
+              || normalizeString(design.tags).includes(normalizeString(search));
+          }
 
-          return hasProduct && hasCategory && hasSearch
-        }) as FormattedDesign[]
+          return hasProduct && hasCategory && hasSearch;
+        }) as FormattedDesign[];
 
-        setTotal(designs.length)
-        setDesigns(designs.slice(start, end))
+        setTotal(designs.length);
+        setDesigns(designs.slice(start, end));
       } else {
-        setTotal(designsAll.length)
-        const designs = [...designsAll].slice(start, end)
-        setDesigns(designs)
+        setTotal(designsAll.length);
+        const designs = [...designsAll].slice(start, end);
+        setDesigns(designs);
       }
-    }
+    };
 
-    paginateAndFilterDesigns()
-  }, [page, designsAll, product, category, search])
+    paginateAndFilterDesigns();
+  }, [page, designsAll, product, category, search]);
 
   useEffect(() => {
-    setTotal(designsAll.length)
-  }, [designsAll])
+    setTotal(designsAll.length);
+  }, [designsAll]);
 
   return (
     <DesignContext.Provider
@@ -153,12 +158,12 @@ export const DesignProvider = ({
         handleSelectProduct,
         category,
         handleSelectCategory,
-        handleSearch
+        handleSearch,
       }}
     >
       {children}
     </DesignContext.Provider>
-  )
+  );
 }
 
-export const useDesign = () => useContext(DesignContext)
+export const useDesign = () => useContext(DesignContext);
