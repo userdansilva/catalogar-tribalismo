@@ -11,7 +11,11 @@ export function Footer() {
     <footer className="w-full border-t border-slate-100 py-10">
       <div className="container flex flex-col items-center justify-between gap-10 md:flex-row">
         <Link href="/">
-          <Image src={logo} alt="Logo escrito Tribalismo" height={30} />
+          <Image
+            src={logo}
+            alt="Logo escrito Tribalismo"
+            width={180}
+          />
         </Link>
 
         <div className="flex flex-col items-center gap-4 md:flex-row">
@@ -23,7 +27,8 @@ export function Footer() {
               <Image
                 src={whatsappIcon}
                 alt="Logo instagram"
-                className="mr-2 size-4"
+                width={16}
+                height={16}
               />
               Fazer orçamento
             </a>
@@ -47,7 +52,8 @@ export function Footer() {
                 <Image
                   src={instagramIcon}
                   alt="Logo instagram"
-                  className="mr-2 size-4"
+                  width={16}
+                  height={16}
                 />
                 Instagram
               </a>
@@ -61,7 +67,8 @@ export function Footer() {
                 <Image
                   src={tiktokIcon}
                   alt="Logo tiktok"
-                  className="mr-2 size-4"
+                  width={16}
+                  height={16}
                 />
                 TikTok
               </a>
