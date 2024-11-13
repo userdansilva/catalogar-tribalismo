@@ -6,12 +6,12 @@ import type { GetStaticProps, NextPage } from "next";
 
 import { useRouter } from "next/router";
 import { Inter } from "next/font/google";
+import { Footer } from "@/components/v2/layout/footer";
 import { Categories } from "../components/Categories";
 import { Designs } from "../components/Designs";
 import { Header } from "../components/Header";
 import { Pagination } from "../components/Pagination";
 import { Products } from "../components/Products";
-import { Footer } from "../components/Footer";
 
 import { FormattedDesign } from "../types/Design";
 import { Category } from "../types/Category";
@@ -56,7 +56,7 @@ function Content({ categories, products }: Pick<HomeProps, "categories" | "produ
       <Designs data={designs} />
 
       {total > designs.length && (
-        <div className="mt-12 flex justify-center">
+        <div className="my-12 flex justify-center">
           <Pagination
             total={total}
             limit={limit}
