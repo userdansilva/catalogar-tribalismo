@@ -26,7 +26,7 @@ export function Footer() {
             >
               <Image
                 src={whatsappIcon}
-                alt="Logo instagram"
+                alt="Logo whatsapp"
                 width={16}
                 height={16}
               />

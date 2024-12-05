@@ -7,9 +7,9 @@ import type { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/v2/layout/footer";
+import { Header } from "@/components/v2/layout/header";
 import { Categories } from "../components/Categories";
 import { Designs } from "../components/Designs";
-import { Header } from "../components/Header";
 import { Pagination } from "../components/Pagination";
 import { Products } from "../components/Products";
 
