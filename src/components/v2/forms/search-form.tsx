@@ -32,6 +32,13 @@ export function SearchForm() {
   const { handleSearch } = useDesign();
 
   const onSubmit = (values: FormValues) => {
+    if (
+      document.activeElement instanceof HTMLElement
+      && typeof document.activeElement.blur === "function"
+    ) {
+      document.activeElement.blur();
+    }
+
     handleSearch(values.search);
   };
 
