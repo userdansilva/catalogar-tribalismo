@@ -21,7 +21,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-4 md:flex-row">
           <Button asChild>
             <a
-              href="https://api.whatsapp.com/send/?phone=557730286168&text=Oi,+acabei+de+ver+o+catalogo+da+Tribalismo+e+quero+fazer+um+or%C3%A7amento!&type=phone_number&app_absent=0"
+              href="https://tintim.link/whatsapp/713fa0a4-d866-43a7-829e-96344d0fe1a9/9c6390cc-5f40-4428-bb97-3c989a2bc820"
               target="_blank"
             >
               <Image
